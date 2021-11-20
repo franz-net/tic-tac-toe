@@ -1,15 +1,29 @@
 //Initialize players object
+
+// THIS OBJECT FOR WHEN WE HAVE THE MENU OVERLAY!
+const game = {
+    player1: {
+        name: '',
+        sign: 'X',
+    },
+    player2: {
+        name: '',
+        sign: 'O',
+    },
+    currentgame: ['', '', '', '', '', '', '', ''],
+}
+
 const players = []
 const matchResults = []
 const winningCombos = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9],
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
     [1, 4, 7],
     [2, 5, 8],
-    [3, 6, 9],
-    [1, 5, 9],
-    [3, 5, 7],
+    [0, 4, 8],
+    [2, 4, 6],
 ]
 const currentPlayer = []
 
@@ -25,25 +39,57 @@ window.onload = function () {
 
 $boardElement.addEventListener('click', (event) => {
     if (event.target.classList.contains('cell') && event.target.innerHTML === '') {
-        console.log(event.target)
+        /* console.log(event.target.dataset.index) */
         for (let player of players) {
             if (player.turn) {
-                console.log(player.sign)
                 event.target.innerText = player.sign
-                switchTurns(player.name)
-                return
+                player.game.push(parseInt(event.target.dataset.index))
             }
         }
+        checkState()
+        switchTurns()
     }
 })
+
+function checkState() {
+    /* console.log(JSON.stringify(players, null, 4)) */
+
+    for (let combo of winningCombos) {
+        /*  console.log(combo) */
+        let firstCell = $boardCells[combo[0]].innerText
+        let secondCell = $boardCells[combo[1]].innerText
+        let thirdCell = $boardCells[combo[2]].innerText
+        if (firstCell === '' || secondCell === '' || thirdCell === '') {
+            console.log('no winner yet')
+            continue
+        } else if (firstCell === secondCell && firstCell === thirdCell) {
+            console.log('YAY! you won!!')
+            announceWinner(firstCell)
+            return
+        } else {
+            console.log('Draw!')
+        }
+    }
+}
+
+function announceWinner(winningSign) {
+    for (let player of players) {
+        if (player.sign === winningSign) {
+            console.log(`The Winner is: ${player.name}!!`)
+            return
+        }
+    }
+}
 
 function switchTurns(currentPlayer) {
     for (let i = 0; i < $playerElements.length; i++) {
         if (players[i].turn) {
             $playerElements[i].style.removeProperty('color')
+            $playerElements[i].style.removeProperty('font-size')
             players[i].turn = false
         } else {
             $playerElements[i].style.color = 'green'
+            $playerElements[i].style.fontSize = 'xx-large'
             players[i].turn = true
         }
     }
@@ -74,6 +120,7 @@ function initializePlayers() {
         player['name'] = 'Player ' + String(i + 1)
         player['score'] = 0
         player['turn'] = false
+        player['game'] = []
         players.push(player)
     }
     // Randomly choose who starts
