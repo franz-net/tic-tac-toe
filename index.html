@@ -5,29 +5,39 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Tic-Tac-Toe!</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Press+Start+2P&display=swap"
+            rel="stylesheet"
+        />
         <link rel="stylesheet" href="css/main.css" />
     </head>
     <body>
         <div id="container">
-            <div class="heading">
+            <div id="heading">
                 <h1>Tic Tac Toe</h1>
             </div>
-            <div id="left" class="side">
-                <h2>Player 1</h2>
-            </div>
-            <div class="board">
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-            </div>
-            <div id="right" class="side">
-                <h2>Player 2</h2>
+            <div id="playing-area">
+                <div id="left-side" class="side">
+                    <h2>Player 1</h2>
+                    <div id="lscore" class="score">15</div>
+                </div>
+                <div class="board">
+                    <div data-index="1" class="cell">x</div>
+                    <div data-index="2" class="cell">o</div>
+                    <div data-index="3" class="cell">x</div>
+                    <div data-index="4" class="cell"></div>
+                    <div data-index="5" class="cell"></div>
+                    <div data-index="6" class="cell"></div>
+                    <div data-index="7" class="cell"></div>
+                    <div data-index="8" class="cell"></div>
+                    <div data-index="9" class="cell"></div>
+                </div>
+                <div id="right-side" class="side">
+                    <h2>Player 2</h2>
+                    <div id="rscore" class="score">10</div>
+                </div>
             </div>
         </div>
         <script src="js/main.js"></script>
