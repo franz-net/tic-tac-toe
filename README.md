@@ -1,4 +1,4 @@
-<h1 align="center"> <a href="www.franz-e.net/tic-tac-toe">Tic-tac-toe</a> </h1>
+<h1 align="center"> <a href="https://www.franz-e.net/tic-tac-toe">Tic-tac-toe</a> </h1>
 
 ## Technologies Used
 
