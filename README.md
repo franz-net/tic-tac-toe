@@ -1,8 +1,6 @@
-# Tic-tac-toe
+<h1 align="center"> <a href="www.franz-e.net/tic-tac-toe">Tic-tac-toe</a> </h1>
 
-> Accessing the site: [www.franz-e.net/tic-tac-toe](www.franz-e.net/tic-tac-toe)
-
-### Game Progression Design:
+## Game Progression Design:
 
 Considering a 2 player game (Maybe computer too if there is time):
 
