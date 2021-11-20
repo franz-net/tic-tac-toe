@@ -71,7 +71,7 @@ body {
     font-size: xx-large;
 }
 
-.board {
+#board {
     grid-area: board;
     display: grid;
     grid-template-columns: repeat(3, auto);
@@ -86,4 +86,9 @@ body {
     display: grid;
     place-content: center;
     font-size: 5em;
+    user-select: none;
+}
+.cell:hover {
+    background-color: gray;
+    box-shadow: 1px 1px 5px gray;
 }
