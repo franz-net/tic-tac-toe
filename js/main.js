@@ -1,5 +1,5 @@
 //Initialize players object
-const players = {}
+const players = []
 const matchResults = []
 const winningCombos = [
     [1, 2, 3],
@@ -12,15 +12,17 @@ const winningCombos = [
     [3, 5, 7],
 ]
 
+const $playerElements = document.querySelectorAll('h2')
+
 //Load Splash screen and ask user questions
 window.onload = function () {
     welcomeUsers()
 }
 
-const 
-
 function welcomeUsers() {
     console.log('hello!')
+    initializePlayers()
+    console.log(JSON.stringify(players, null, 4))
     //TODO create splash screen
     //TODO create options overlay
 }
@@ -29,10 +31,21 @@ function welcomeUsers() {
  * Initializes player names
  * Will ask for player names eventually
  */
-function initializePlayer() {
-    for (let i = 0; i > 2; i++) {
-        players['player' + String(i + 1)] = {}
-        players['player' + String(i + 1)].score = 0
-        players['player' + String(i + 1)].turn = false
+function initializePlayers() {
+    for (let i = 0; i < 2; i++) {
+        let player = {}
+        player['name'] = 'Player ' + String(i + 1)
+        player['score'] = 0
+        player['turn'] = false
+        players.push(player)
+    }
+    // Randomly choose who starts
+    players[Math.floor(Math.random() * 2)].turn = true
+
+    for (let i = 0; i < $playerElements.length; i++) {
+        $playerElements[i].innerText = players[i].name
+        if (players[i].turn) {
+            $playerElements[i].style.color = 'green'
+        }
     }
 }
