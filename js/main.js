@@ -26,8 +26,28 @@ window.onload = function () {
 $boardElement.addEventListener('click', (event) => {
     if (event.target.classList.contains('cell') && event.target.innerHTML === '') {
         console.log(event.target)
+        for (let player of players) {
+            if (player.turn) {
+                console.log(player.sign)
+                event.target.innerText = player.sign
+                switchTurns(player.name)
+                return
+            }
+        }
     }
 })
+
+function switchTurns(currentPlayer) {
+    for (let i = 0; i < $playerElements.length; i++) {
+        if (players[i].turn) {
+            $playerElements[i].style.removeProperty('color')
+            players[i].turn = false
+        } else {
+            $playerElements[i].style.color = 'green'
+            players[i].turn = true
+        }
+    }
+}
 
 function welcomeUsers() {
     console.log('hello!')
@@ -40,7 +60,7 @@ function welcomeUsers() {
 
 function resetBoard() {
     for (let cell of $boardCells) {
-        console.log(cell)
+        /* console.log(cell) */
         cell.innerText = ''
     }
 }
@@ -53,16 +73,19 @@ function initializePlayers() {
         let player = {}
         player['name'] = 'Player ' + String(i + 1)
         player['score'] = 0
+        player['turn'] = false
         players.push(player)
     }
     // Randomly choose who starts
-    currentPlayer[0] = players[Math.floor(Math.random() * 2)].name
+    players[Math.floor(Math.random() * 2)].turn = true
 
     for (let i = 0; i < $playerElements.length; i++) {
         $playerElements[i].innerText = players[i].name
         $scoreBoards[i].textContent = players[i].score
-        if (players[i].name === currentPlayer[0]) {
+        if (players[i].turn) {
             $playerElements[i].style.color = 'green'
         }
     }
+    players[0].sign = 'X'
+    players[1].sign = 'O'
 }
