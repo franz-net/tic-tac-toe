@@ -1,6 +1,12 @@
 <h1 align="center"> <a href="www.franz-e.net/tic-tac-toe">Tic-tac-toe</a> </h1>
 
-## Game Progression Design:
+## Technologies Used
+
+-   HTML
+-   JavaScript
+-   CSS
+
+## Game Progression Design
 
 Considering a 2 player game (Maybe computer too if there is time):
 
@@ -29,9 +35,14 @@ Considering a 2 player game (Maybe computer too if there is time):
             -   Save match result
             -   Clear board
             -   Start match
-        -   If ending game:
-            -   Count matches won
-            -   Show who is overall winner
-            -   Add to "highest score" (if there is enough time)
-            -   Reset score board
-            -   Clear board
+    -   Ending a game:
+        -   Count matches won
+        -   Show who is overall winner
+        -   Add to "highest score" (if there is enough time)
+        -   Reset score board
+        -   Clear board
+
+## Match Draft
+
+Overall representation of the layout during a match without styling:
+![Match Draft](img/match_draft.png)
