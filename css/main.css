@@ -35,12 +35,20 @@ body {
     grid-area: playing-area;
     display: grid;
     grid-template-areas: 'left-side board right-side';
-    /* grid-template-columns: 1fr 4fr 1fr; */
     gap: 2em;
     padding: 2em;
     box-shadow: 10px 5px 5px red;
     background-color: white;
     border-radius: 5%;
+}
+
+@media screen and (max-width: 30em) {
+    #playing-area {
+        grid-template-areas:
+            'left-side right-side'
+            'board board';
+        place-content: center;
+    }
 }
 
 .side {
@@ -95,4 +103,11 @@ body {
 .cell:hover {
     background-color: gray;
     box-shadow: 1px 1px 5px gray;
+}
+
+@media screen and (max-width: 30em) {
+    .cell {
+        width: 100px;
+        height: 100px;
+    }
 }
