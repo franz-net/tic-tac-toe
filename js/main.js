@@ -45,22 +45,24 @@ window.onload = function () {
 
 $boardElement.addEventListener('click', (event) => {
     if (event.target.classList.contains('cell') && event.target.innerHTML === '') {
+        let currentPlayer = ''
         for (let key in game) {
             if (key.includes('player')) {
                 if (game[key].isTurn) {
                     event.target.innerText = game[key].sign
                     game.currentgame[parseInt(event.target.dataset.index)] = game[key].sign
                     console.log(game.currentgame)
+                    currentPlayer = key
                     setTurn()
                     break
                 }
             }
         }
-        checkState()
+        checkState(currentPlayer)
     }
 })
 
-function checkState() {
+function checkState(player) {
     // check if the game is draw
     if (game.currentgame.indexOf('') === -1) {
         alert('The game is a draw!')
@@ -71,7 +73,9 @@ function checkState() {
             let secondCell = game.currentgame[combo[1]]
             let thirdCell = game.currentgame[combo[2]]
             if (firstCell != '' && firstCell === secondCell && firstCell === thirdCell) {
-                alert('You have won!!')
+                alert(`${game[player].name} has won!`)
+                game[player].won += 1
+                updateScoreBoards()
             }
         }
     }
@@ -90,7 +94,6 @@ function welcomeUsers() {
     console.log('hello!')
     initializePlayers()
     initializeGame()
-    /* console.log(JSON.stringify(players, null, 4)) */
     //TODO create splash screen
     //TODO create options overlay
 }
@@ -110,14 +113,30 @@ function initializePlayers() {
  * setTurn() to determine whos turn it is
  */
 function initializeGame() {
-    game.currentgame = ['', '', '', '', '', '', '', '']
-    for (let cell of $boardCells) {
-        /* console.log(cell) */
-        cell.innerText = ''
-    }
+    restartMatch()
     $playerElements[0].innerText = game.player_1.name
     $playerElements[1].innerText = game.player_2.name
     setTurn()
+}
+
+/*
+ * Resets the virtual board
+ * Can be called by itself if users want to keep playing after a match has ended
+ */
+function restartMatch() {
+    game.currentgame = ['', '', '', '', '', '', '', '']
+    for (let cell of $boardCells) {
+        cell.innerText = ''
+    }
+    updateScoreBoards()
+}
+
+/*
+ * Updates the score in the boards
+ */
+function updateScoreBoards() {
+    $scoreBoards[0].innerText = game.player_1.won
+    $scoreBoards[1].innerText = game.player_2.won
 }
 
 /*
