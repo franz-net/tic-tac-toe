@@ -73,6 +73,8 @@ body {
 }
 
 #board {
+    width: fit-content;
+    height: fit-content;
     grid-area: board;
     display: grid;
     grid-template-columns: repeat(3, auto);
@@ -81,8 +83,8 @@ body {
 }
 
 .cell {
-    width: 100px;
-    height: 100px;
+    width: 130px;
+    height: 130px;
     background-color: white;
     display: grid;
     place-content: center;

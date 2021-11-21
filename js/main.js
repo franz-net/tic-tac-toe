@@ -1,20 +1,27 @@
 //Initialize players object
 
-// THIS OBJECT FOR WHEN WE HAVE THE MENU OVERLAY!
 const game = {
-    player1: {
+    player_1: {
         name: '',
+        isIA: false,
         sign: 'X',
+        isTurn: false,
+        won: 0,
+        lost: 0,
+        playerElement: 0,
     },
-    player2: {
+    player_2: {
         name: '',
+        isIA: false,
         sign: 'O',
+        isTurn: false,
+        won: 0,
+        lost: 0,
+        playerElement: 1,
     },
-    currentgame: ['', '', '', '', '', '', '', ''],
+    currentgame: [],
 }
 
-const players = []
-const matchResults = []
 const winningCombos = [
     [0, 1, 2],
     [3, 4, 5],
@@ -25,7 +32,6 @@ const winningCombos = [
     [0, 4, 8],
     [2, 4, 6],
 ]
-const currentPlayer = []
 
 const $playerElements = document.querySelectorAll('h2')
 const $boardElement = document.getElementById('board')
@@ -39,35 +45,34 @@ window.onload = function () {
 
 $boardElement.addEventListener('click', (event) => {
     if (event.target.classList.contains('cell') && event.target.innerHTML === '') {
-        /* console.log(event.target.dataset.index) */
-        for (let player of players) {
-            if (player.turn) {
-                event.target.innerText = player.sign
-                player.game.push(parseInt(event.target.dataset.index))
+        for (let key in game) {
+            if (key.includes('player')) {
+                if (game[key].isTurn) {
+                    event.target.innerText = game[key].sign
+                    game.currentgame[parseInt(event.target.dataset.index)] = game[key].sign
+                    console.log(game.currentgame)
+                    setTurn()
+                    break
+                }
             }
         }
         checkState()
-        switchTurns()
     }
 })
 
 function checkState() {
-    /* console.log(JSON.stringify(players, null, 4)) */
-
-    for (let combo of winningCombos) {
-        /*  console.log(combo) */
-        let firstCell = $boardCells[combo[0]].innerText
-        let secondCell = $boardCells[combo[1]].innerText
-        let thirdCell = $boardCells[combo[2]].innerText
-        if (firstCell === '' || secondCell === '' || thirdCell === '') {
-            console.log('no winner yet')
-            continue
-        } else if (firstCell === secondCell && firstCell === thirdCell) {
-            console.log('YAY! you won!!')
-            announceWinner(firstCell)
-            return
-        } else {
-            console.log('Draw!')
+    // check if the game is draw
+    if (game.currentgame.indexOf('') === -1) {
+        alert('The game is a draw!')
+        return
+    } else {
+        for (let combo of winningCombos) {
+            let firstCell = game.currentgame[combo[0]]
+            let secondCell = game.currentgame[combo[1]]
+            let thirdCell = game.currentgame[combo[2]]
+            if (firstCell != '' && firstCell === secondCell && firstCell === thirdCell) {
+                alert('You have won!!')
+            }
         }
     }
 }
@@ -81,58 +86,63 @@ function announceWinner(winningSign) {
     }
 }
 
-function switchTurns(currentPlayer) {
-    for (let i = 0; i < $playerElements.length; i++) {
-        if (players[i].turn) {
-            $playerElements[i].style.removeProperty('color')
-            $playerElements[i].style.removeProperty('font-size')
-            players[i].turn = false
-        } else {
-            $playerElements[i].style.color = 'green'
-            $playerElements[i].style.fontSize = 'xx-large'
-            players[i].turn = true
-        }
-    }
-}
-
 function welcomeUsers() {
     console.log('hello!')
     initializePlayers()
-    resetBoard()
+    initializeGame()
     /* console.log(JSON.stringify(players, null, 4)) */
     //TODO create splash screen
     //TODO create options overlay
 }
 
-function resetBoard() {
+/*
+ * Initializes player names
+ */
+function initializePlayers() {
+    game.player_1.name = 'Player 1'
+    game.player_1.isIA = false
+    game.player_2.name = 'Player 2'
+    game.player_2.isIA = false
+}
+
+/*
+ * Initializes game by clearing the board, setting the player names and calling
+ * setTurn() to determine whos turn it is
+ */
+function initializeGame() {
+    game.currentgame = ['', '', '', '', '', '', '', '']
     for (let cell of $boardCells) {
         /* console.log(cell) */
         cell.innerText = ''
     }
+    $playerElements[0].innerText = game.player_1.name
+    $playerElements[1].innerText = game.player_2.name
+    setTurn()
 }
-/*
- * Initializes player names
- * Will ask for player names eventually
- */
-function initializePlayers() {
-    for (let i = 0; i < 2; i++) {
-        let player = {}
-        player['name'] = 'Player ' + String(i + 1)
-        player['score'] = 0
-        player['turn'] = false
-        player['game'] = []
-        players.push(player)
-    }
-    // Randomly choose who starts
-    players[Math.floor(Math.random() * 2)].turn = true
 
-    for (let i = 0; i < $playerElements.length; i++) {
-        $playerElements[i].innerText = players[i].name
-        $scoreBoards[i].textContent = players[i].score
-        if (players[i].turn) {
-            $playerElements[i].style.color = 'green'
+/*
+ * Manages player's turn and styling to indicate who's turn it is.
+ * When the game is initializing, the turn is chosen randomly
+ */
+function setTurn() {
+    if (game.player_1.isTurn === game.player_2.isTurn) {
+        let randomPlayer = 'player_' + String(Math.floor(Math.random() * 2) + 1)
+        game[randomPlayer].isTurn = true
+        $playerElements[game[randomPlayer].playerElement].style.color = 'green'
+        $playerElements[game[randomPlayer].playerElement].style.fontSize = 'xx-large'
+    } else {
+        for (let key in game) {
+            if (key.includes('player')) {
+                if (game[key].isTurn) {
+                    $playerElements[game[key].playerElement].style.removeProperty('color')
+                    $playerElements[game[key].playerElement].style.removeProperty('font-size')
+                    game[key].isTurn = false
+                } else {
+                    $playerElements[game[key].playerElement].style.color = 'green'
+                    $playerElements[game[key].playerElement].style.fontSize = 'xx-large'
+                    game[key].isTurn = true
+                }
+            }
         }
     }
-    players[0].sign = 'X'
-    players[1].sign = 'O'
 }
