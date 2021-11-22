@@ -39,12 +39,16 @@ const $scoreBoards = document.querySelectorAll('.score')
 const $boardCells = document.querySelectorAll('.cell')
 const $scoreModal = document.querySelector('#modal-score')
 const $scoreModalMessage = document.querySelector('#modal-score-content > p')
+const $modalScoreButtons = document.querySelectorAll('.modal-score-button')
 
 //Load Splash screen and ask user questions
 window.onload = function () {
     welcomeUsers()
 }
 
+/*
+ * Captures a click inside the game board and changes the player turn
+ */
 $boardElement.addEventListener('click', (event) => {
     if (event.target.classList.contains('cell') && event.target.innerHTML === '') {
         let currentPlayer = ''
@@ -64,9 +68,23 @@ $boardElement.addEventListener('click', (event) => {
     }
 })
 
-function checkState(player) {
-    // check if the game is draw
+$scoreModal.addEventListener('click', (event) => {
+    if (event.target.classList.contains('button')) {
+        if (event.target.innerText === 'yes') {
+            $scoreModal.style.display = 'none'
+            restartMatch()
+        } else if (event.target.innerText === 'no') {
+            $scoreModal.style.display = 'none'
+            welcomeUsers()
+        }
+    }
+})
 
+/*
+ * Checks the current game for possible Winning conditions met
+ * or Draw situation
+ */
+function checkState(player) {
     for (let combo of winningCombos) {
         let firstCell = game.currentgame[combo[0]]
         let secondCell = game.currentgame[combo[1]]
@@ -78,7 +96,6 @@ function checkState(player) {
             return
         }
     }
-
     if (game.currentgame.indexOf('') === -1) {
         announceResult('draw')
         return
@@ -86,7 +103,7 @@ function checkState(player) {
 }
 
 /*
- * Displays a modal announcing the winner or if its a draw
+ * Displays a modal announcing the winner or if its a draw and the possibility of playing again
  */
 function announceResult(matchResult) {
     if (matchResult === 'draw') {
@@ -121,9 +138,11 @@ function initializePlayers() {
  * setTurn() to determine whos turn it is
  */
 function initializeGame() {
-    restartMatch()
     $playerElements[0].innerText = game.player_1.name
+    game.player_1.won = 0
     $playerElements[1].innerText = game.player_2.name
+    game.player_2.won = 0
+    restartMatch()
     setTurn()
 }
 
