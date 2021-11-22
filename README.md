@@ -46,3 +46,12 @@ Considering a 2 player game (Maybe computer too if there is time):
 
 Overall representation of the layout during a match without styling:
 ![Match Draft](img/match_draft.png)
+
+## Currently working on:
+
+-   End game functionality
+-   Play again functionality
+-   Styling:
+    -   Buttons
+    -   Pop-Ups
+    -   Game Board
