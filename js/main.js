@@ -33,6 +33,11 @@ const winningCombos = [
     [2, 4, 6],
 ]
 
+let drawSound = new Audio('./sounds/drawSound.wav')
+let winSound = new Audio('./sounds/winnerSound.wav')
+let resetGameSound = new Audio('./sounds/quit.wav')
+let turnSound = new Audio('./sounds/turn.mp3')
+
 const $playerElements = document.querySelectorAll('h2')
 const $boardElement = document.getElementById('board')
 const $scoreBoards = document.querySelectorAll('.score')
@@ -54,10 +59,10 @@ $boardElement.addEventListener('click', (event) => {
         let currentPlayer = ''
         for (let key in game) {
             if (key.includes('player')) {
+                turnSound.play()
                 if (game[key].isTurn) {
                     event.target.innerText = game[key].sign
                     game.currentgame[parseInt(event.target.dataset.index)] = game[key].sign
-                    console.log(game.currentgame)
                     currentPlayer = key
                     setTurn()
                     break
@@ -75,6 +80,7 @@ $scoreModal.addEventListener('click', (event) => {
             restartMatch()
         } else if (event.target.innerText === 'no') {
             $scoreModal.style.display = 'none'
+            resetGameSound.play()
             welcomeUsers()
         }
     }
@@ -91,6 +97,7 @@ function checkState(player) {
         let thirdCell = game.currentgame[combo[2]]
         if (firstCell != '' && firstCell === secondCell && firstCell === thirdCell) {
             announceResult(game[player].name)
+            winSound.play()
             game[player].won += 1
             updateScoreBoards()
             return
@@ -98,6 +105,7 @@ function checkState(player) {
     }
     if (game.currentgame.indexOf('') === -1) {
         announceResult('draw')
+        drawSound.play()
         return
     }
 }

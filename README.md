@@ -55,3 +55,7 @@ Overall representation of the layout during a match without styling:
     -   Buttons
     -   Pop-Ups
     -   Game Board
+
+## Attributions:
+
+-   Sound by: [LittleRobotSoundFactory](https://freesound.org/people/LittleRobotSoundFactory/)
