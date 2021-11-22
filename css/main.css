@@ -8,7 +8,6 @@ body {
     margin: 0;
     display: grid;
     place-content: center;
-    /* font-family: 'Fredoka One', cursive; */
     font-family: 'Press Start 2P', cursive;
 }
 
@@ -39,17 +38,18 @@ body {
     padding: 2em;
     box-shadow: 10px 5px 5px red;
     background-color: white;
-    border-radius: 5%;
+    border-radius: 25px;
 }
 
-@media screen and (max-width: 30em) {
+/* @media screen and (max-width: 40em) {
     #playing-area {
         grid-template-areas:
             'left-side right-side'
             'board board';
+        display: grid;
         place-content: center;
     }
-}
+} */
 
 .side {
     display: flex;
@@ -105,9 +105,46 @@ body {
     box-shadow: 1px 1px 5px gray;
 }
 
-@media screen and (max-width: 30em) {
+/* @media screen and (max-width: 40em) {
     .cell {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
     }
+} */
+
+#modal-score {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#modal-score-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 200px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    line-height: 2em;
+    border-radius: 25px;
+    padding: 20px;
+}
+
+.button {
+    padding: 0.5em 1em;
+    width: 10em;
+    background-color: black;
+    color: white;
+    border: 1px double white;
+    outline: 1px solid gray;
 }

@@ -37,6 +37,8 @@ const $playerElements = document.querySelectorAll('h2')
 const $boardElement = document.getElementById('board')
 const $scoreBoards = document.querySelectorAll('.score')
 const $boardCells = document.querySelectorAll('.cell')
+const $scoreModal = document.querySelector('#modal-score')
+const $scoreModalMessage = document.querySelector('#modal-score-content > p')
 
 //Load Splash screen and ask user questions
 window.onload = function () {
@@ -64,29 +66,35 @@ $boardElement.addEventListener('click', (event) => {
 
 function checkState(player) {
     // check if the game is draw
-    if (game.currentgame.indexOf('') === -1) {
-        alert('The game is a draw!')
-        return
-    } else {
-        for (let combo of winningCombos) {
-            let firstCell = game.currentgame[combo[0]]
-            let secondCell = game.currentgame[combo[1]]
-            let thirdCell = game.currentgame[combo[2]]
-            if (firstCell != '' && firstCell === secondCell && firstCell === thirdCell) {
-                alert(`${game[player].name} has won!`)
-                game[player].won += 1
-                updateScoreBoards()
-            }
+
+    for (let combo of winningCombos) {
+        let firstCell = game.currentgame[combo[0]]
+        let secondCell = game.currentgame[combo[1]]
+        let thirdCell = game.currentgame[combo[2]]
+        if (firstCell != '' && firstCell === secondCell && firstCell === thirdCell) {
+            announceResult(game[player].name)
+            game[player].won += 1
+            updateScoreBoards()
+            return
         }
+    }
+
+    if (game.currentgame.indexOf('') === -1) {
+        announceResult('draw')
+        return
     }
 }
 
-function announceWinner(winningSign) {
-    for (let player of players) {
-        if (player.sign === winningSign) {
-            console.log(`The Winner is: ${player.name}!!`)
-            return
-        }
+/*
+ * Displays a modal announcing the winner or if its a draw
+ */
+function announceResult(matchResult) {
+    if (matchResult === 'draw') {
+        $scoreModalMessage.innerHTML = 'Game is a Draw! <br /> Would you like to play again?'
+        $scoreModal.style.display = 'flex'
+    } else {
+        $scoreModalMessage.innerHTML = `${matchResult} wins! <br /> Would you like to play again?`
+        $scoreModal.style.display = 'flex'
     }
 }
 
@@ -124,7 +132,7 @@ function initializeGame() {
  * Can be called by itself if users want to keep playing after a match has ended
  */
 function restartMatch() {
-    game.currentgame = ['', '', '', '', '', '', '', '']
+    game.currentgame = ['', '', '', '', '', '', '', '', '']
     for (let cell of $boardCells) {
         cell.innerText = ''
     }
