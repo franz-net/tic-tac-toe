@@ -38,7 +38,11 @@ let winSound = new Audio('./sounds/winnerSound.wav')
 let resetGameSound = new Audio('./sounds/quit.wav')
 let turnSound = new Audio('./sounds/turn.mp3')
 
-const $playerElements = document.querySelectorAll('h2')
+const $welcomeModal = document.querySelector('#modal-welcome')
+const $p1NameInput = document.querySelector('#p1-name-input')
+const $p2NameInput = document.querySelector('#p2-name-input')
+const $containerElement = document.querySelector('#container')
+const $playerElements = document.querySelectorAll('.side > h2')
 const $boardElement = document.getElementById('board')
 const $scoreBoards = document.querySelectorAll('.score')
 const $boardCells = document.querySelectorAll('.cell')
@@ -50,6 +54,20 @@ const $modalScoreButtons = document.querySelectorAll('.modal-score-button')
 window.onload = function () {
     welcomeUsers()
 }
+
+/*
+ * Captures clicks inside the welcome modal
+ */
+$welcomeModal.addEventListener('click', (event) => {
+    if (event.target.classList.contains('button')) {
+        if (event.target.innerText === 'continue') {
+            initializePlayers()
+            initializeGame()
+            $containerElement.style.removeProperty('display')
+            $welcomeModal.style.display = 'none'
+        }
+    }
+})
 
 /*
  * Captures a click inside the game board and changes the player turn
@@ -73,6 +91,9 @@ $boardElement.addEventListener('click', (event) => {
     }
 })
 
+/*
+ * Captures the response from the modal after a match has ended in draw or win
+ */
 $scoreModal.addEventListener('click', (event) => {
     if (event.target.classList.contains('button')) {
         if (event.target.innerText === 'yes') {
@@ -87,58 +108,32 @@ $scoreModal.addEventListener('click', (event) => {
 })
 
 /*
- * Checks the current game for possible Winning conditions met
- * or Draw situation
+ * Displays Splash screen for users to sign up
  */
-function checkState(player) {
-    for (let combo of winningCombos) {
-        let firstCell = game.currentgame[combo[0]]
-        let secondCell = game.currentgame[combo[1]]
-        let thirdCell = game.currentgame[combo[2]]
-        if (firstCell != '' && firstCell === secondCell && firstCell === thirdCell) {
-            announceResult(game[player].name)
-            winSound.play()
-            game[player].won += 1
-            updateScoreBoards()
-            return
-        }
-    }
-    if (game.currentgame.indexOf('') === -1) {
-        announceResult('draw')
-        drawSound.play()
-        return
-    }
-}
-
-/*
- * Displays a modal announcing the winner or if its a draw and the possibility of playing again
- */
-function announceResult(matchResult) {
-    if (matchResult === 'draw') {
-        $scoreModalMessage.innerHTML = 'Game is a Draw! <br /> Would you like to play again?'
-        $scoreModal.style.display = 'flex'
-    } else {
-        $scoreModalMessage.innerHTML = `${matchResult} wins! <br /> Would you like to play again?`
-        $scoreModal.style.display = 'flex'
-    }
-}
-
 function welcomeUsers() {
-    console.log('hello!')
-    initializePlayers()
-    initializeGame()
-    //TODO create splash screen
-    //TODO create options overlay
+    $containerElement.style.display = 'none'
+    $welcomeModal.style.display = 'flex'
 }
 
 /*
  * Initializes player names
  */
 function initializePlayers() {
-    game.player_1.name = 'Player 1'
-    game.player_1.isIA = false
-    game.player_2.name = 'Player 2'
-    game.player_2.isIA = false
+    if ($p1NameInput.value !== '') {
+        game.player_1.name = $p1NameInput.value
+    } else {
+        game.player_1.name = 'Player 1'
+    }
+    if ($p2NameInput.value !== '') {
+        game.player_2.name = $p2NameInput.value
+    } else {
+        game.player_2.name = 'Player 2'
+    }
+
+    $p1NameInput.value = ''
+    $p2NameInput.value = ''
+    //game.player_1.isIA = false
+    //game.player_2.isIA = false
 }
 
 /*
@@ -182,21 +177,58 @@ function setTurn() {
     if (game.player_1.isTurn === game.player_2.isTurn) {
         let randomPlayer = 'player_' + String(Math.floor(Math.random() * 2) + 1)
         game[randomPlayer].isTurn = true
-        $playerElements[game[randomPlayer].playerElement].style.color = 'green'
-        $playerElements[game[randomPlayer].playerElement].style.fontSize = 'xx-large'
+        $playerElements[game[randomPlayer].playerElement].style.color = '#6e83eb'
+        $playerElements[game[randomPlayer].playerElement].style.textShadow = '2px 2px #475494'
     } else {
         for (let key in game) {
             if (key.includes('player')) {
                 if (game[key].isTurn) {
                     $playerElements[game[key].playerElement].style.removeProperty('color')
-                    $playerElements[game[key].playerElement].style.removeProperty('font-size')
+                    $playerElements[game[key].playerElement].style.removeProperty('text-shadow')
                     game[key].isTurn = false
                 } else {
-                    $playerElements[game[key].playerElement].style.color = 'green'
-                    $playerElements[game[key].playerElement].style.fontSize = 'xx-large'
+                    $playerElements[game[key].playerElement].style.color = '#6e83eb'
+                    $playerElements[game[key].playerElement].style.textShadow = '1px 1px #475494'
                     game[key].isTurn = true
                 }
             }
         }
+    }
+}
+
+/*
+ * Checks the current game for possible Winning conditions met
+ * or Draw situation
+ */
+function checkState(player) {
+    for (let combo of winningCombos) {
+        let firstCell = game.currentgame[combo[0]]
+        let secondCell = game.currentgame[combo[1]]
+        let thirdCell = game.currentgame[combo[2]]
+        if (firstCell != '' && firstCell === secondCell && firstCell === thirdCell) {
+            announceResult(game[player].name)
+            winSound.play()
+            game[player].won += 1
+            updateScoreBoards()
+            return
+        }
+    }
+    if (game.currentgame.indexOf('') === -1) {
+        announceResult('draw')
+        drawSound.play()
+        return
+    }
+}
+
+/*
+ * Displays a modal announcing the winner or if its a draw and the possibility of playing again
+ */
+function announceResult(matchResult) {
+    if (matchResult === 'draw') {
+        $scoreModalMessage.innerHTML = 'Game is a Draw! <br /> Would you like to play again?'
+        $scoreModal.style.display = 'flex'
+    } else {
+        $scoreModalMessage.innerHTML = `${matchResult} wins! <br /> Would you like to play again?`
+        $scoreModal.style.display = 'flex'
     }
 }

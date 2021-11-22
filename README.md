@@ -49,8 +49,6 @@ Overall representation of the layout during a match without styling:
 
 ## Currently working on:
 
--   End game functionality
--   Play again functionality
 -   Styling:
     -   Buttons
     -   Pop-Ups

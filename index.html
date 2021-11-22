@@ -14,14 +14,50 @@
         <link rel="stylesheet" href="css/main.css" />
     </head>
     <body>
+        <div id="modal-welcome">
+            <div id="modal-welcome-content">
+                <h1>Welcome!</h1>
+                <p>Let's play a game of Tic Tac Toe!</p>
+                <div id="modal-welcome-form">
+                    <p>
+                        Player 1 Name:
+                        <input
+                            id="p1-name-input"
+                            class="modal-input-text"
+                            type="text"
+                            placeholder="P1"
+                        />
+                    </p>
+                    <p>
+                        Player 2 Name:
+                        <input
+                            id="p2-name-input"
+                            class="modal-input-text"
+                            type="text"
+                            placeholder="P2"
+                        />
+                    </p>
+                </div>
+                <div id="modal-welcome-buttons">
+                    <button class="button modal-button-continue modal-welcome-button">
+                        continue
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <div id="container">
             <div id="heading">
                 <h1>Tic Tac Toe</h1>
             </div>
+
             <div id="playing-area">
                 <div id="left-side" class="side">
                     <h2></h2>
-                    <div id="lscore" class="score"></div>
+                    <div class="score-container">
+                        Wins:
+                        <span id="lscore" class="score"></span>
+                    </div>
                 </div>
                 <div id="board">
                     <div data-index="0" class="cell"></div>
@@ -36,7 +72,10 @@
                 </div>
                 <div id="right-side" class="side">
                     <h2></h2>
-                    <div id="rscore" class="score"></div>
+                    <div class="score-container">
+                        Wins:
+                        <span id="rscore" class="score"></span>
+                    </div>
                 </div>
             </div>
         </div>

@@ -30,6 +30,45 @@ body {
     font-weight: lighter;
 }
 
+#modal-welcome {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#modal-welcome-content {
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    line-height: 2em;
+    width: 80%;
+    height: 80%;
+    border-radius: 25px;
+    padding: 10px;
+    border: 3px solid white;
+}
+#modal-welcome-form {
+    text-align: center;
+}
+
+.modal-input-text {
+    font-family: 'Press Start 2P', cursive;
+    border: none;
+    padding: 0.5em;
+    color: #808196;
+    width: 40%;
+}
+
 #playing-area {
     grid-area: playing-area;
     display: grid;
@@ -57,10 +96,10 @@ body {
     justify-content: space-evenly;
     align-items: center;
     user-select: none;
-    max-width: 10em;
+    max-width: 8em;
     text-align: center;
-    line-height: 1.3;
-    font-size: large;
+    line-height: 1.4;
+    font-size: medium;
 }
 
 #left-side {
@@ -71,8 +110,15 @@ body {
     grid-area: right-side;
 }
 
+.score-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
+}
+
 .score {
-    border: 2px solid black;
+    border: 3px solid black;
     width: 3em;
     height: 3em;
     display: grid;
@@ -160,7 +206,7 @@ body {
 }
 
 .button {
-    width: 7em;
+    width: auto;
     height: 2.5em;
 
     display: inline-block;
@@ -186,27 +232,40 @@ body {
 }
 
 .modal-button-yes {
-    box-shadow: inset -4px -4px 0px 0px #4aa52e;
-    background: #98cd41;
+    box-shadow: inset -4px -4px 0px 0px #26804b;
+    background: #29c04f;
 }
 
 .modal-button-yes:hover {
-    background: #a8df71;
+    background: #8cffa9;
 }
 
 .modal-button-yes:active {
-    box-shadow: inset 4px 4px 0px 0px #4aa52e;
+    box-shadow: inset 4px 4px 0px 0px #26804b;
 }
 
 .modal-button-no {
-    box-shadow: inset -4px -4px 0px 0px #8c2022;
-    background: #e76e55;
+    box-shadow: inset -4px -4px 0px 0px #b84074;
+    background: #f0698f;
 }
 
 .modal-button-no:hover {
-    background: #df8d7c;
+    background: #ffa8bf;
 }
 
 .modal-button-no:active {
-    box-shadow: inset 4px 4px 0px 0px #8c2022;
+    box-shadow: inset 4px 4px 0px 0px #b84074;
+}
+
+.modal-button-continue {
+    box-shadow: inset -4px -4px 0px 0px #475494;
+    background: #6e83eb;
+}
+
+.modal-button-continue:hover {
+    background: #9eaeff;
+}
+
+.modal-button-continue:active {
+    box-shadow: inset 4px 4px 0px 0px #475494;
 }
