@@ -97,6 +97,7 @@ footer a:hover {
     color: white;
     font-size: xx-large;
     font-weight: lighter;
+    text-align: center;
 }
 
 #playing-area {
@@ -195,14 +196,14 @@ footer a:hover {
             'board-footer board-footer';
         display: grid;
         place-content: center;
+        padding: 10px;
     }
-}
-/* @media screen and (max-width: 40em) {
     .cell {
         width: 80px;
         height: 80px;
+        font-size: 3em;
     }
-} */
+}
 
 #modal-score {
     position: fixed;
