@@ -188,23 +188,6 @@ footer a:hover {
     margin-bottom: -100px;
 }
 
-@media screen and (max-width: 40em) {
-    #playing-area {
-        grid-template-areas:
-            'left-side right-side'
-            'board board'
-            'board-footer board-footer';
-        display: grid;
-        place-content: center;
-        padding: 10px;
-    }
-    .cell {
-        width: 80px;
-        height: 80px;
-        font-size: 3em;
-    }
-}
-
 #modal-score {
     position: fixed;
     left: 0;
@@ -316,4 +299,27 @@ footer a:hover {
 
 .modal-button-continue:active {
     box-shadow: inset 4px 4px 0px 0px #475494;
+}
+
+@media screen and (max-width: 50em) {
+    #playing-area {
+        grid-template-areas:
+            'left-side right-side'
+            'board board'
+            'board-footer board-footer';
+        display: grid;
+        place-content: center;
+        padding: 10px;
+    }
+    .cell {
+        width: 80px;
+        height: 80px;
+        font-size: 3em;
+    }
+    .modal-button-no {
+        width: 70px;
+    }
+    .modal-button-yes {
+        width: 70px;
+    }
 }
