@@ -20,6 +20,8 @@ const game = {
     currentgame: [],
 }
 
+const highScores = []
+
 const winningCombos = [
     [0, 1, 2],
     [3, 4, 5],
@@ -61,9 +63,9 @@ $welcomeModal.addEventListener('click', (event) => {
     if (event.target.classList.contains('button')) {
         if (event.target.innerText === 'continue') {
             initializePlayers()
-            initializeGame()
             $containerElement.style.removeProperty('display')
             $welcomeModal.style.display = 'none'
+            initializeGame()
         }
     }
 })
@@ -91,8 +93,8 @@ $boardElement.addEventListener('click', (event) => {
         let currentPlayer = ''
         for (let key in game) {
             if (key.includes('player')) {
-                turnSound.play()
                 if (game[key].isTurn) {
+                    turnSound.play()
                     event.target.innerText = game[key].sign
                     game.currentgame[parseInt(event.target.dataset.index)] = game[key].sign
                     currentPlayer = key
@@ -105,7 +107,6 @@ $boardElement.addEventListener('click', (event) => {
                 }
             }
         }
-        //checkState(currentPlayer)
     }
 })
 
@@ -118,9 +119,10 @@ $scoreModal.addEventListener('click', (event) => {
             $scoreModal.style.display = 'none'
             restartMatch()
         } else if (event.target.innerText === 'no') {
-            $scoreModal.style.display = 'none'
             resetGameSound.play()
+            saveHighScore()
             resetGameProperties()
+            $scoreModal.style.display = 'none'
             welcomeUsers()
         }
     }
@@ -168,7 +170,6 @@ function initializeGame() {
     $playerElements[0].innerText = game.player_1.name
     $playerElements[1].innerText = game.player_2.name
     restartMatch()
-    setTurn()
 }
 
 /*
@@ -179,8 +180,16 @@ function restartMatch() {
     game.currentgame = ['', '', '', '', '', '', '', '', '']
     for (let cell of $boardCells) {
         cell.innerText = ''
+        cell.style.removeProperty('background')
+    }
+    game.player_1.isTurn = false
+    game.player_2.isTurn = false
+    for (let player of $playerElements) {
+        player.style.removeProperty('color')
+        player.style.removeProperty('text-shadow')
     }
     updateScoreBoards()
+    setTurn()
 }
 
 /*
@@ -196,12 +205,16 @@ function updateScoreBoards() {
  * When the game is initializing, the turn is chosen randomly
  */
 function setTurn() {
-    let playerInTurn = ''
     if (game.player_1.isTurn === game.player_2.isTurn) {
         let randomPlayer = 'player_' + String(Math.floor(Math.random() * 2) + 1)
         game[randomPlayer].isTurn = true
         $playerElements[game[randomPlayer].playerElement].style.color = '#6e83eb'
         $playerElements[game[randomPlayer].playerElement].style.textShadow = '2px 2px #475494'
+        if (game[randomPlayer].isAI) {
+            setTimeout(() => {
+                aiPlayTurn(randomPlayer)
+            }, 500)
+        }
     } else {
         for (let key in game) {
             if (key.includes('player')) {
@@ -213,9 +226,10 @@ function setTurn() {
                     $playerElements[game[key].playerElement].style.color = '#6e83eb'
                     $playerElements[game[key].playerElement].style.textShadow = '1px 1px #475494'
                     game[key].isTurn = true
-                    playerInTurn = key
                     if (game[key].isAI) {
-                        aiPlayTurn(key)
+                        setTimeout(() => {
+                            aiPlayTurn(key)
+                        }, 500)
                     }
                 }
             }
@@ -229,6 +243,7 @@ function aiPlayTurn(player) {
     let boardIndex = game.currentgame.indexOf('')
     $boardCells[boardIndex].innerText = game[player].sign
     game.currentgame[boardIndex] = game[player].sign
+    turnSound.play()
     if (!checkState(player)) {
         setTurn()
     } else {
@@ -246,7 +261,12 @@ function checkState(player) {
         let secondCell = game.currentgame[combo[1]]
         let thirdCell = game.currentgame[combo[2]]
         if (firstCell != '' && firstCell === secondCell && firstCell === thirdCell) {
-            setTimeout(announceResult(game[player].name), 30000)
+            for (let i = 0; i < 3; i++) {
+                $boardCells[combo[i]].style.background = '#ffe5b9'
+            }
+            setTimeout(() => {
+                announceResult(game[player].name)
+            }, 800)
             game[player].won += 1
             updateScoreBoards()
             return true
@@ -286,4 +306,32 @@ function resetGameProperties() {
             game[key].won = 0
         }
     }
+}
+
+/*
+ * Saves the high score for the user in the highScore Array
+ */
+function saveHighScore() {
+    if (game.player_1.won === game.player_2.won) {
+        for (let key in game) {
+            if (key.includes('player')) {
+                let score = {}
+                score['name'] = game[key].name
+                score['score'] = game[key].won
+                highScores.push(score)
+            }
+        }
+    } else if (game.player_1.won > game.player_2.won) {
+        let score = {}
+        score['name'] = game.player_1.name
+        score['score'] = game.player_1.won
+        highScores.push(score)
+    } else {
+        let score = {}
+        score['name'] = game.player_2.name
+        score['score'] = game.player_2.won
+        highScores.push(score)
+    }
+
+    highScores.sort((a, b) => a.score - b.score)
 }
