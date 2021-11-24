@@ -3,7 +3,7 @@
 const game = {
     player_1: {
         name: '',
-        isIA: false,
+        isAI: false,
         sign: 'X',
         isTurn: false,
         won: 0,
@@ -12,7 +12,7 @@ const game = {
     },
     player_2: {
         name: '',
-        isIA: false,
+        isAI: true,
         sign: 'O',
         isTurn: false,
         won: 0,
@@ -41,6 +41,7 @@ let turnSound = new Audio('./sounds/turn.mp3')
 const $welcomeModal = document.querySelector('#modal-welcome')
 const $p1NameInput = document.querySelector('#p1-name-input')
 const $p2NameInput = document.querySelector('#p2-name-input')
+const $p2aiCheck = document.querySelector('#p2ai')
 const $containerElement = document.querySelector('#container')
 const $playerElements = document.querySelectorAll('.side > h2')
 const $boardElement = document.getElementById('board')
@@ -70,6 +71,21 @@ $welcomeModal.addEventListener('click', (event) => {
 })
 
 /*
+ * Capture the "AI" selection
+ */
+$p2aiCheck.addEventListener('click', (event) => {
+    if (event.target.checked) {
+        $p2NameInput.value = 'Computer'
+        $p2NameInput.style.background = 'black'
+        $p2NameInput.readOnly = true
+    } else if (!event.target.checked) {
+        $p2NameInput.value = ''
+        $p2NameInput.style.removeProperty('background')
+        $p2NameInput.readOnly = false
+    }
+})
+
+/*
  * Captures a click inside the game board and changes the player turn
  */
 $boardElement.addEventListener('click', (event) => {
@@ -82,12 +98,16 @@ $boardElement.addEventListener('click', (event) => {
                     event.target.innerText = game[key].sign
                     game.currentgame[parseInt(event.target.dataset.index)] = game[key].sign
                     currentPlayer = key
-                    setTurn()
-                    break
+                    if (!checkState(currentPlayer)) {
+                        setTurn()
+                        break
+                    } else {
+                        return
+                    }
                 }
             }
         }
-        checkState(currentPlayer)
+        //checkState(currentPlayer)
     }
 })
 
@@ -117,6 +137,7 @@ function welcomeUsers() {
 
 /*
  * Initializes player names
+ * and setting up the AI
  */
 function initializePlayers() {
     if ($p1NameInput.value !== '') {
@@ -130,10 +151,14 @@ function initializePlayers() {
         game.player_2.name = 'Player 2'
     }
 
+    if ($p2aiCheck.checked) {
+        game.player_2.isAI = true
+    }
+
     $p1NameInput.value = ''
     $p2NameInput.value = ''
-    //game.player_1.isIA = false
-    //game.player_2.isIA = false
+    $p2aiCheck.checked = false
+    $p2NameInput.style.removeProperty('background')
 }
 
 /*
@@ -174,6 +199,7 @@ function updateScoreBoards() {
  * When the game is initializing, the turn is chosen randomly
  */
 function setTurn() {
+    let playerInTurn = ''
     if (game.player_1.isTurn === game.player_2.isTurn) {
         let randomPlayer = 'player_' + String(Math.floor(Math.random() * 2) + 1)
         game[randomPlayer].isTurn = true
@@ -190,9 +216,26 @@ function setTurn() {
                     $playerElements[game[key].playerElement].style.color = '#6e83eb'
                     $playerElements[game[key].playerElement].style.textShadow = '1px 1px #475494'
                     game[key].isTurn = true
+                    playerInTurn = key
+                    if (game[key].isAI) {
+                        aiPlayTurn(key)
+                    }
                 }
             }
         }
+    }
+}
+/*
+ * Basic "computer player"
+ */
+function aiPlayTurn(player) {
+    let boardIndex = game.currentgame.indexOf('')
+    $boardCells[boardIndex].innerText = game[player].sign
+    game.currentgame[boardIndex] = game[player].sign
+    if (!checkState(player)) {
+        setTurn()
+    } else {
+        return
     }
 }
 
@@ -206,18 +249,17 @@ function checkState(player) {
         let secondCell = game.currentgame[combo[1]]
         let thirdCell = game.currentgame[combo[2]]
         if (firstCell != '' && firstCell === secondCell && firstCell === thirdCell) {
-            announceResult(game[player].name)
-            winSound.play()
+            setTimeout(announceResult(game[player].name), 30000)
             game[player].won += 1
             updateScoreBoards()
-            return
+            return true
         }
     }
     if (game.currentgame.indexOf('') === -1) {
         announceResult('draw')
-        drawSound.play()
-        return
+        return true
     }
+    return false
 }
 
 /*
@@ -225,9 +267,11 @@ function checkState(player) {
  */
 function announceResult(matchResult) {
     if (matchResult === 'draw') {
+        drawSound.play()
         $scoreModalMessage.innerHTML = 'Game is a Draw! <br /> Would you like to play again?'
         $scoreModal.style.display = 'flex'
     } else {
+        winSound.play()
         $scoreModalMessage.innerHTML = `${matchResult} wins! <br /> Would you like to play again?`
         $scoreModal.style.display = 'flex'
     }

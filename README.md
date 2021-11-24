@@ -6,6 +6,11 @@
 -   JavaScript
 -   CSS
 
+## Features:
+
+-   Play against another player
+-   Play against the computer
+
 ## Game Progression Design
 
 Considering a 2 player game (Maybe computer too if there is time):
@@ -52,7 +57,9 @@ Overall representation of the layout during a match without styling:
 -   Styling:
     -   Buttons
     -   Pop-Ups
-    -   Game Board
+    -   Sound FX
+-   Easter Eggs
+-   High scores (with local storage)
 
 ## Attributions:
 
