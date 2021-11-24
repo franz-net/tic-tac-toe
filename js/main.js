@@ -75,7 +75,7 @@ $welcomeModal.addEventListener('click', (event) => {
  */
 $p2aiCheck.addEventListener('click', (event) => {
     if (event.target.checked) {
-        $p2NameInput.value = 'Computer'
+        $p2NameInput.value = 'JOSHUA'
         $p2NameInput.style.background = 'black'
         $p2NameInput.readOnly = true
     } else if (!event.target.checked) {
