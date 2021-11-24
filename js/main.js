@@ -12,7 +12,7 @@ const game = {
     },
     player_2: {
         name: '',
-        isAI: true,
+        isAI: false,
         sign: 'O',
         isTurn: false,
         won: 0,
