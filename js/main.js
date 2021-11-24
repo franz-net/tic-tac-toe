@@ -141,7 +141,6 @@ $highScoresButton.addEventListener('click', (event) => {
  * Capture the continue button to exit out of
  * the high scores modal
  */
-
 $highScoresModal.addEventListener('click', (event) => {
     if (event.target.classList.contains('button') && event.target.innerText === 'continue') {
         $highScoresModal.style.removeProperty('display')
@@ -363,12 +362,19 @@ function saveHighScore() {
     localStorage.setItem('highScores', JSON.stringify(highScores))
 }
 
+/*
+ * Retrieves high scores from local storage and displays them in the
+ * Modal
+ */
 function showHighScores() {
     let highScores = JSON.parse(localStorage.getItem('highScores'))
     highScores.sort((a, b) => {
         return b.score - a.score
     })
     console.log(highScores)
+    for (let element of $highScoreDisplayText.getElementsByTagName('p')) {
+        element.remove()
+    }
     for (let hscore of highScores) {
         console.log(`${hscore.name.toUpperCase()}`)
         let hsContainer = document.createElement('p')
@@ -380,6 +386,9 @@ function showHighScores() {
     }
 }
 
+/*
+ * Returns a formatted date for the high score objects
+ */
 function getDate() {
     let date = new Date()
     let formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
