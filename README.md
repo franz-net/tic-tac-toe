@@ -10,15 +10,23 @@
 
 -   Play against another player
 -   Play against the computer
+-   Easter Eggs
+    -   The net "Praettorians" symbol on welcome screen - Shows high scores
+    -   AI name "Joshua" from "war games"
 
-## Game Progression Design
+## Screenshots:
 
-Considering a 2 player game (Maybe computer too if there is time):
+TODO!
+
+## Game Progression
+
+Considering a 2 player game:
 
     -   Starting a game:
         -   Player selection:
-            -   Select players (pvp (or pvc or cvc if there is time))
-            -   Input player names
+            -   Select players (pvp or pvc)
+            -   Input player names, by default the names are:
+                -   Player 1 or Player 2 or Joshua for AI **
             -   Randomly choose who starts the game
             -   Initialize scores objects (vars | arrays | objects)
     -   Starting a match:
@@ -29,7 +37,7 @@ Considering a 2 player game (Maybe computer too if there is time):
         -   Indicate which user's turn it is
         -   Track moves to determine winner
         -   Win a match (a line is formed by matching 3 cells)
-        -   End a match (at any time)
+        -   End a match (after a Draw or a Win)
     -   Winning a match:
         -   Show the match is over
         -   Show who is the match winner
@@ -43,7 +51,7 @@ Considering a 2 player game (Maybe computer too if there is time):
     -   Ending a game:
         -   Count matches won
         -   Show who is overall winner
-        -   Add to "highest score" (if there is enough time)
+        -   Add to "highest score"
         -   Reset score board
         -   Clear board
 
