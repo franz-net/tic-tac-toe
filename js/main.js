@@ -7,7 +7,6 @@ const game = {
         sign: 'X',
         isTurn: false,
         won: 0,
-        lost: 0,
         playerElement: 0,
     },
     player_2: {
@@ -16,7 +15,6 @@ const game = {
         sign: 'O',
         isTurn: false,
         won: 0,
-        lost: 0,
         playerElement: 1,
     },
     currentgame: [],
@@ -122,6 +120,7 @@ $scoreModal.addEventListener('click', (event) => {
         } else if (event.target.innerText === 'no') {
             $scoreModal.style.display = 'none'
             resetGameSound.play()
+            resetGameProperties()
             welcomeUsers()
         }
     }
@@ -167,9 +166,7 @@ function initializePlayers() {
  */
 function initializeGame() {
     $playerElements[0].innerText = game.player_1.name
-    game.player_1.won = 0
     $playerElements[1].innerText = game.player_2.name
-    game.player_2.won = 0
     restartMatch()
     setTurn()
 }
@@ -274,5 +271,19 @@ function announceResult(matchResult) {
         winSound.play()
         $scoreModalMessage.innerHTML = `${matchResult} wins! <br /> Would you like to play again?`
         $scoreModal.style.display = 'flex'
+    }
+}
+
+/*
+ * Resets game properties for next game
+ */
+function resetGameProperties() {
+    for (let key in game) {
+        if (key.includes('player')) {
+            game[key].name = ''
+            game[key].isTurn = false
+            game[key].isAI = false
+            game[key].won = 0
+        }
     }
 }
