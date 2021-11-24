@@ -10,6 +10,7 @@ body {
     place-content: center;
     font-family: 'Press Start 2P', cursive;
     gap: 2em;
+    user-select: none;
 }
 
 body > footer {
@@ -37,7 +38,7 @@ footer a:hover {
     color: #808196;
 }
 
-#modal-welcome {
+.modal-outer {
     position: fixed;
     left: 0;
     top: 0;
@@ -45,9 +46,13 @@ footer a:hover {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.4);
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
+}
+
+.modal-hidden {
+    display: none;
 }
 
 #modal-welcome-content {
@@ -96,7 +101,6 @@ footer a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    user-select: none;
     color: white;
     font-size: xx-large;
     font-weight: lighter;
@@ -105,9 +109,7 @@ footer a:hover {
 
 #playing-area {
     display: grid;
-    grid-template-areas:
-        'left-side board right-side'
-        'board-footer board-footer board-footer';
+    grid-template-areas: 'left-side board right-side';
     gap: 2em;
     padding: 2em;
     box-shadow: 10px 5px 5px red;
@@ -120,7 +122,6 @@ footer a:hover {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    user-select: none;
     max-width: 8em;
     text-align: center;
     line-height: 1.4;
@@ -169,7 +170,6 @@ footer a:hover {
     place-content: center;
     text-align: center;
     font-size: 5em;
-    user-select: none;
 }
 .cell:hover {
     background-color: gray;
@@ -177,31 +177,19 @@ footer a:hover {
 }
 
 .board-footer {
-    grid-area: board-footer;
-    text-align: right;
-    right: 0;
-    bottom: 0;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 2em;
+    margin-bottom: -1em;
+    width: 100%;
+    align-self: flex-end;
 }
 
 #praettorians {
     font-family: Arial, Helvetica, sans-serif;
-    color: grey;
+    color: #8cffa9;
     font-size: 1rem;
-    user-select: none;
-    margin-bottom: -100px;
-}
-
-#modal-score {
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    display: none;
-    justify-content: center;
-    align-items: center;
+    padding: 4px;
 }
 
 #modal-score-content {
@@ -224,6 +212,63 @@ footer a:hover {
     width: 60%;
     display: flex;
     justify-content: space-evenly;
+}
+
+#modal-high-scores {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 90%;
+    height: 90%;
+    background-color: black;
+    color: white;
+    border-radius: 25px;
+    border: 2px solid white;
+    gap: 3em;
+    animation: background-changer 10s infinite alternate linear;
+}
+
+#modal-scroll-container {
+    width: 80%;
+    height: 50%;
+    overflow: hidden;
+}
+
+#modal-scrolling-text {
+    height: 100%;
+    padding: 1em;
+    color: #29c04f;
+    transform: translateY(100%);
+    animation: scrolling-scores 15s linear infinite;
+}
+
+@keyframes background-changer {
+    0% {
+        background-color: #1c1632;
+    }
+    25% {
+        background-color: #475494;
+    }
+    50% {
+        background-color: #6a3e8c;
+    }
+    75% {
+        background-color: #1e503f;
+    }
+    100% {
+        background-color: #f05e5e;
+    }
+}
+
+@keyframes scrolling-scores {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(-100%);
+    }
 }
 
 .button:before {
@@ -308,8 +353,7 @@ footer a:hover {
     #playing-area {
         grid-template-areas:
             'left-side right-side'
-            'board board'
-            'board-footer board-footer';
+            'board board';
         display: grid;
         place-content: center;
         padding: 10px;

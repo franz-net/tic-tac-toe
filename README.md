@@ -55,10 +55,7 @@ Overall representation of the layout during a match without styling:
 ## Currently working on:
 
 -   Styling:
-    -   Buttons
-    -   Pop-Ups
     -   Sound FX
--   Easter Eggs
 -   High scores (with local storage)
 
 ## Attributions:

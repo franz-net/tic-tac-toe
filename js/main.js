@@ -50,6 +50,9 @@ const $boardCells = document.querySelectorAll('.cell')
 const $scoreModal = document.querySelector('#modal-score')
 const $scoreModalMessage = document.querySelector('#modal-score-content > p')
 const $modalScoreButtons = document.querySelectorAll('.modal-score-button')
+const $highScoresButton = document.querySelector('#praettorians')
+const $highScoresModal = document.querySelector('#high-score-modal')
+const $highScoreDisplayText = document.querySelector('#modal-scrolling-text')
 
 //Load Splash screen and ask user questions
 window.onload = function () {
@@ -60,13 +63,11 @@ window.onload = function () {
  * Captures clicks inside the welcome modal
  */
 $welcomeModal.addEventListener('click', (event) => {
-    if (event.target.classList.contains('button')) {
-        if (event.target.innerText === 'continue') {
-            initializePlayers()
-            $containerElement.style.removeProperty('display')
-            $welcomeModal.style.display = 'none'
-            initializeGame()
-        }
+    if (event.target.classList.contains('button') && event.target.innerText === 'continue') {
+        initializePlayers()
+        $containerElement.style.removeProperty('display')
+        $welcomeModal.style.display = 'none'
+        initializeGame()
     }
 })
 
@@ -125,6 +126,27 @@ $scoreModal.addEventListener('click', (event) => {
             $scoreModal.style.display = 'none'
             welcomeUsers()
         }
+    }
+})
+
+/*
+ * Capture the Pi click to display high scores
+ */
+$highScoresButton.addEventListener('click', (event) => {
+    console.log('clicked!')
+    console.log($highScoresModal)
+    $highScoresModal.style.display = 'flex'
+    showHighScores()
+})
+
+/*
+ * Capture the continue button to exit out of
+ * the high scores modal
+ */
+
+$highScoresModal.addEventListener('click', (event) => {
+    if (event.target.classList.contains('button') && event.target.innerText === 'continue') {
+        $highScoresModal.style.removeProperty('display')
     }
 })
 
@@ -334,4 +356,14 @@ function saveHighScore() {
     }
 
     highScores.sort((a, b) => a.score - b.score)
+}
+
+function showHighScores() {
+    for (let hscore of highScores) {
+        console.log(`${hscore.name.toUpperCase()}`)
+        let hsContainer = document.createElement('p')
+        let hsText = document.createTextNode(`${hscore.name.toUpperCase()} -- ${hscore.score}`)
+        hsContainer.appendChild(hsText)
+        $highScoreDisplayText.appendChild(hsContainer)
+    }
 }

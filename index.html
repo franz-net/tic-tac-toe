@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="css/main.css" />
     </head>
     <body>
-        <div id="modal-welcome">
+        <div id="modal-welcome" class="modal-outer">
             <div id="modal-welcome-content">
                 <h1>Welcome!</h1>
                 <p>
@@ -47,6 +47,9 @@
                     <button class="button modal-button-continue modal-welcome-button">
                         continue
                     </button>
+                </div>
+                <div class="board-footer">
+                    <div id="praettorians">π</div>
                 </div>
             </div>
         </div>
@@ -82,10 +85,12 @@
                         <span id="rscore" class="score"></span>
                     </div>
                 </div>
-                <div class="board-footer"><span id="praettorians">π</span></div>
+                <!-- <div class="board-footer">
+                    <div id="praettorians">π</div>
+                </div> -->
             </div>
         </div>
-        <div id="modal-score">
+        <div id="modal-score" class="modal-outer modal-hidden">
             <div id="modal-score-content">
                 <p>Player 1 Wins! Would you like to play another game?</p>
                 <div id="modal-score-buttons">
@@ -94,6 +99,23 @@
                 </div>
             </div>
         </div>
+
+        <div id="high-score-modal" class="modal-outer modal-hidden">
+            <div id="modal-high-scores">
+                <h2>Thanks for playing!!</h2>
+                <div id="modal-scroll-container">
+                    <div id="modal-scrolling-text">
+                        <h3>Name -- Score</h3>
+                        <hr />
+                    </div>
+                </div>
+
+                <div id="modal-high-score-buttons">
+                    <button class="button modal-button-continue">continue</button>
+                </div>
+            </div>
+        </div>
+
         <footer>
             <a href="https://www.linkedin.com/in/franzramirez/" target="_blank">LinkedIn </a>|<a
                 href="https://github.com/franz-net"
