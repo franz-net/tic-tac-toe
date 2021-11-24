@@ -20,8 +20,6 @@ const game = {
     currentgame: [],
 }
 
-const highScores = []
-
 const winningCombos = [
     [0, 1, 2],
     [3, 4, 5],
@@ -334,10 +332,16 @@ function resetGameProperties() {
  * Saves the high score for the user in the highScore Array
  */
 function saveHighScore() {
+    let highScores = []
+    if (JSON.parse(localStorage.getItem('highScores')) !== null) {
+        highScores = JSON.parse(localStorage.getItem('highScores'))
+    }
+
     if (game.player_1.won === game.player_2.won) {
         for (let key in game) {
             if (key.includes('player')) {
                 let score = {}
+                score['date'] = getDate()
                 score['name'] = game[key].name
                 score['score'] = game[key].won
                 highScores.push(score)
@@ -345,25 +349,40 @@ function saveHighScore() {
         }
     } else if (game.player_1.won > game.player_2.won) {
         let score = {}
+        score['date'] = getDate()
         score['name'] = game.player_1.name
         score['score'] = game.player_1.won
         highScores.push(score)
     } else {
         let score = {}
+        score['date'] = getDate()
         score['name'] = game.player_2.name
         score['score'] = game.player_2.won
         highScores.push(score)
     }
-
-    highScores.sort((a, b) => a.score - b.score)
+    localStorage.setItem('highScores', JSON.stringify(highScores))
 }
 
 function showHighScores() {
+    let highScores = JSON.parse(localStorage.getItem('highScores'))
+    highScores.sort((a, b) => {
+        return b.score - a.score
+    })
+    console.log(highScores)
     for (let hscore of highScores) {
         console.log(`${hscore.name.toUpperCase()}`)
         let hsContainer = document.createElement('p')
-        let hsText = document.createTextNode(`${hscore.name.toUpperCase()} -- ${hscore.score}`)
+        let hsText = document.createTextNode(
+            `${hscore.date} -- ${hscore.name.toUpperCase()} -- ${hscore.score}`
+        )
         hsContainer.appendChild(hsText)
         $highScoreDisplayText.appendChild(hsContainer)
     }
+}
+
+function getDate() {
+    let date = new Date()
+    let formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
+
+    return formattedDate
 }

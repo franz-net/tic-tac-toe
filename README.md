@@ -56,7 +56,6 @@ Overall representation of the layout during a match without styling:
 
 -   Styling:
     -   Sound FX
--   High scores (with local storage)
 
 ## Attributions:
 

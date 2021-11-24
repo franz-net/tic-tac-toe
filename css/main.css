@@ -243,6 +243,9 @@ footer a:hover {
     transform: translateY(100%);
     animation: scrolling-scores 15s linear infinite;
 }
+#modal-scrolling-text p {
+    color: #ffaf4d;
+}
 
 @keyframes background-changer {
     0% {
