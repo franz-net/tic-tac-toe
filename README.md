@@ -7,7 +7,7 @@
   - [Features:](#features)
   - [Technologies Used](#technologies-used)
 - [Gameplay](#gameplay)
-  - [Screenshots:](#screenshots)
+  - [Screenshots and Media:](#screenshots-and-media)
   - [Demo Video](#demo-video)
 - [Challenges and Lessons Learned](#challenges-and-lessons-learned)
 - [Roadmap](#roadmap)
@@ -31,7 +31,7 @@ The game has the following features:
 -   High Scores
 -   Easter Eggs
     -   [The Net](https://www.youtube.com/watch?v=TFpKuq_tuIU&t=32s) "Praettorians" symbol on welcome screen - Shows high scores
-    -   AI name "Joshua" from [Wwargames](https://www.youtube.com/watch?v=F7qOV8xonfY)
+    -   AI name "Joshua" from [Wargames](https://www.youtube.com/watch?v=F7qOV8xonfY)
 
 ### Technologies Used
 
@@ -48,6 +48,7 @@ Some of the key features used:
 -   Local Storage (JS)
 -   Transform (CSS)
 -   Animations (CSS)
+-   Media queries (CSS)
 
 ---
 
@@ -64,9 +65,9 @@ Some of the key features used:
 
 -   Once a match has concluded the users are presented with the opportunity to continue playing or end the game, which saves the score to the High Scores
 
-### Screenshots:
+### Screenshots and Media:
 
-TODO!
+-   Initial layout draft: ![Match Draft](img/match_draft.png)
 
 ### Demo Video
 
@@ -76,47 +77,31 @@ TODO
 
 ## Challenges and Lessons Learned
 
-Considering a 2 player game:
+-   In General understanding the initial idea in the layout draft is just a starting guide, and the final design will change regardless as more edge cases arise
 
-    -   Starting a game:
-        -   Player selection:
-            -   Select players (pvp or pvc)
-            -   Input player names, by default the names are:
-                -   Player 1 or Player 2 or Joshua for AI **
-            -   Randomly choose who starts the game
-            -   Initialize scores objects (vars | arrays | objects)
-    -   Starting a match:
-        -   Initialize board
-        -   Display player names
-        -   Show game score for each player
-    -   During a match:
-        -   Indicate which user's turn it is
-        -   Track moves to determine winner
-        -   Win a match (a line is formed by matching 3 cells)
-        -   End a match (after a Draw or a Win)
-    -   Winning a match:
-        -   Show the match is over
-        -   Show who is the match winner
-        -   Keep track of matches won per player
-    -   Ending a match:
-        -   Ask to continue or end game
-        -   If continue:
-            -   Save match result
-            -   Clear board
-            -   Start match
-    -   Ending a game:
-        -   Count matches won
-        -   Show who is overall winner
-        -   Add to "highest score"
-        -   Reset score board
-        -   Clear board
+**JavaScript**
 
-Overall representation of the layout during a match without styling:
-![Match Draft](img/match_draft.png)
+-   Deciding whether to use independent variables and arrays, or group everything together under a JS Object to simulate an instance of a Game
+-   The validation for an end game scenario was interesting:
+    -   There are only 8 winning combinations
+    -   After each turn, and before the turns are switched the validation needs to happen as the end should finish before switching turns
+-   Maintaining persistence of the overall HighScores using Local Storage
+-   Leveraging bubbling to reduce the amount of listeners needed
+
+**CSS**
+
+-   Creating the layout with a combination of Grid and Flexbox on each container
+-   Defining the right sizes on the `media query` to allow a more responsive design
+-   Creating the 8-bit button style was challenging
 
 ## Roadmap
 
-Currently the game only features a very dumb "computer" player whose objective is just to play a turn on the first available cell. The next iteration has to be more competitive.
+-   Create a `favicon`
+-   Smarter Computer player:
+    > The current Computer player's goal is is just to play a turn on the first available cell.
+-   Use Classes to instantiate a Game objects instead of a JS object to simulate an object
+-   Style the `checkbox input` to match the 8-bit design
+-   Add visual effects to the title
 
 ## Contact
 
