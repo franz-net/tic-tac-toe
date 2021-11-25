@@ -14,8 +14,6 @@
 - [Contact](#contact)
 - [Attributions:](#attributions)
 
----
-
 ## About the Project
 
 First project from General Assembly Software Engineering Immersive Class, which goal is to showcase what I have learned so far in terms of JavaScript, HTML and CSS
@@ -50,8 +48,6 @@ Some of the key features used:
 -   Animations (CSS)
 -   Media queries (CSS)
 
----
-
 ## Gameplay
 
 -   The game begins with a splash screen that allows each player to enter its desired name or the default `Player 1` or `Player 2`
@@ -72,8 +68,6 @@ Some of the key features used:
 ### Demo Video
 
 TODO
-
----
 
 ## Challenges and Lessons Learned
 
