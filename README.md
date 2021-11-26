@@ -95,7 +95,6 @@ TODO
     > The current Computer player's goal is is just to play a turn on the first available cell.
 -   Use Classes to instantiate a Game objects instead of a JS object to simulate an object
 -   Style the `checkbox input` to match the 8-bit design
--   Add visual effects to the title
 
 ## Contact
 

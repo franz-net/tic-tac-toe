@@ -35,6 +35,7 @@ let drawSound = new Audio('./sounds/drawSound.wav')
 let winSound = new Audio('./sounds/winnerSound.wav')
 let resetGameSound = new Audio('./sounds/quit.wav')
 let turnSound = new Audio('./sounds/turn.mp3')
+let highscoresSound = new Audio('./sounds/high-scores.mp3')
 
 const $welcomeModal = document.querySelector('#modal-welcome')
 const $p1NameInput = document.querySelector('#p1-name-input')
@@ -134,6 +135,7 @@ $highScoresButton.addEventListener('click', (event) => {
     console.log('clicked!')
     console.log($highScoresModal)
     $highScoresModal.style.display = 'flex'
+    highscoresSound.play()
     showHighScores()
 })
 
@@ -143,6 +145,7 @@ $highScoresButton.addEventListener('click', (event) => {
  */
 $highScoresModal.addEventListener('click', (event) => {
     if (event.target.classList.contains('button') && event.target.innerText === 'continue') {
+        highscoresSound.pause()
         $highScoresModal.style.removeProperty('display')
     }
 })

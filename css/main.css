@@ -18,6 +18,27 @@ body > footer {
     top: 100vh;
 }
 
+#heading {
+    font-family: inherit;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#tic {
+    color: #ff747b;
+    text-shadow: -1px -1px 1px #ffa79e, 5px 5px #bb275d;
+}
+
+#tac {
+    color: #fda200;
+    text-shadow: -1px -1px 1px #eafe99, 5px 5px #cb690b;
+}
+
+#toe {
+    color: #cffd55;
+    text-shadow: -1px -1px 1px #f0ff9a, 5px 5px #1aac43;
+}
+
 footer {
     display: flex;
     justify-content: center;
@@ -353,6 +374,12 @@ footer a:hover {
 }
 
 @media screen and (max-width: 50em) {
+    h2 {
+        font-size: 1em;
+    }
+    #heading {
+        font-size: 1em;
+    }
     #playing-area {
         grid-template-areas:
             'left-side right-side'
@@ -360,6 +387,9 @@ footer a:hover {
         display: grid;
         place-content: center;
         padding: 10px;
+    }
+    .score-container {
+        font-size: 0.8em;
     }
     .cell {
         width: 80px;
