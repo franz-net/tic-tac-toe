@@ -10,7 +10,6 @@
   - [Technologies Used](#technologies-used)
 - [Gameplay](#gameplay)
   - [Screenshots and Media:](#screenshots-and-media)
-  - [Demo Video](#demo-video)
 - [Challenges and Lessons Learned](#challenges-and-lessons-learned)
 - [Roadmap](#roadmap)
 - [Contact](#contact)
@@ -32,8 +31,8 @@ The game has the following features:
 -   PvC (Player vs Computer)
 -   High Scores
 -   Easter Eggs
-    -   [The Net](https://www.youtube.com/watch?v=TFpKuq_tuIU&t=32s) "Praettorians" symbol on welcome screen - Shows high scores
-    -   AI name "Joshua" from [Wargames](https://www.youtube.com/watch?v=F7qOV8xonfY)
+    -   [The Net](https://www.youtube.com/watch?v=TFpKuq_tuIU&t=32s) "Pi" symbol on welcome screen - Shows high scores
+    -   [Wargames](https://www.youtube.com/watch?v=F7qOV8xonfY) AI name "Joshua"
 
 ### Technologies Used
 
@@ -68,10 +67,11 @@ Some of the key features used:
 ### Screenshots and Media:
 
 -   Initial layout draft: ![Match Draft](img/match_draft.png)
-
-### Demo Video
-
-TODO
+-   Welcome Screen: ![Welcome Screen](img/welcomeScreen.png)
+-   Main Gameplay: ![Gameplay](img/gameBoard.png)
+-   Winner Screen: ![Winner](img/winnerScreen.png)
+-   Draw Screen: ![Draw](img/drawScreen.png)
+-   HighScores Screen: ![High Scores](img/highScores.png)
 
 ## Challenges and Lessons Learned
 

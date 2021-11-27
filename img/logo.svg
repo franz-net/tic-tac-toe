@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="logo.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:object-paths="false"
+     inkscape:snap-bbox="true"
+     inkscape:snap-global="true"
+     showguides="false"
+     inkscape:zoom="0.35355339"
+     inkscape:cx="-7.0710678"
+     inkscape:cy="302.6417"
+     inkscape:window-width="1495"
+     inkscape:window-height="975"
+     inkscape:window-x="2843"
+     inkscape:window-y="46"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <rect
+       x="361.40674"
+       y="696.69727"
+       width="56.264648"
+       height="90.750732"
+       id="rect7851" />
+    <rect
+       x="361.40674"
+       y="696.69727"
+       width="56.264648"
+       height="90.750732"
+       id="rect7851-2" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:17.0037;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect4075"
+       width="200"
+       height="200"
+       x="5.2508421"
+       y="18.695066"
+       ry="37.098656"
+       inkscape:export-filename="/home/franz/Dropbox/IT/GA/CS-Flex/lessons/course/project1/tic-tac-toe/img/favicon.png"
+       inkscape:export-xdpi="4.0640001"
+       inkscape:export-ydpi="4.0640001" />
+    <text
+       xml:space="preserve"
+       transform="matrix(1.4074115,0.17806839,0.06056921,1.4353479,-465.94021,-989.71105)"
+       id="text7849-9"
+       style="font-style:normal;font-weight:normal;font-size:48px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect7851-2);fill:#905f6c;fill-opacity:1;stroke:none"
+       inkscape:export-filename="/home/franz/Dropbox/IT/GA/CS-Flex/lessons/course/project1/tic-tac-toe/img/favicon.png"
+       inkscape:export-xdpi="4.0640001"
+       inkscape:export-ydpi="4.0640001"><tspan
+         x="361.40625"
+         y="739.16602"
+         id="tspan22941">x</tspan></text>
+    <g
+       id="g5611"
+       style="fill:#ffffff"
+       inkscape:export-filename="/home/franz/Dropbox/IT/GA/CS-Flex/lessons/course/project1/tic-tac-toe/img/favicon.png"
+       inkscape:export-xdpi="4.0640001"
+       inkscape:export-ydpi="4.0640001">
+      <path
+         id="rect3585"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:14.2702;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 73.171888,34.216843 v 50.00005 l -50.000047,-4.64823 v 6.00015 l 50.000047,4.64823 v 50.000037 l -50.000047,-4.64822 v 5.99963 l 50.000047,4.64822 v 50.00005 l 6.000152,0.5578 v -50.00005 l 50.00004,4.64823 v 50.00005 l 5.99964,0.55775 v -50.00005 l 50.00004,4.64822 v -5.99963 l -50.00004,-4.64822 V 95.980813 l 50.00004,4.648227 v -6.000147 l -50.00004,-4.64823 v -50.00005 l -5.99964,-0.55775 v 50.00005 l -50.00004,-4.64822 v -50.00005 z m 6.000152,56.558 50.00004,4.64822 v 50.000047 l -50.00004,-4.64823 z" />
+      <path
+         id="rect3585-6"
+         style="opacity:0.3656721;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:14.2702;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 79.17159,40.774766 v 50.000049 l -50.000047,-4.64823 v 6.000149 l 50.000047,4.648203 v 50.000013 l -50.000047,-4.64822 v 5.99963 l 50.000047,4.64822 v 50.00005 l 6.000152,0.5578 v -50.00005 l 49.999978,4.64823 v 50.00005 l 5.99964,0.55775 v -50.00005 l 50.00004,4.64822 v -5.99963 l -50.00004,-4.64822 v -50.00005 l 50.00004,4.64823 v -6.00015 l -50.00004,-4.6482 V 46.538536 l -5.99964,-0.55775 V 95.980813 L 85.171742,91.332615 V 41.332566 Z m 6.000152,56.557968 49.999978,4.648196 v 50.00005 l -49.999978,-4.64823 z" />
+    </g>
+    <path
+       id="path5695"
+       style="opacity:0.7843796;fill:#5395aa;fill-opacity:1;stroke:none;stroke-width:10.2922;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 45.255378,39.83975 A 21.542406,17.946494 20.491602 0 0 26.799658,58.264737 21.542406,17.946494 20.491602 0 0 50.30985,76.689724 21.542406,17.946494 20.491602 0 0 68.765569,58.264737 21.542406,17.946494 20.491602 0 0 45.255378,39.83975 Z m 1.207186,8.80107 a 10.633144,9.2046847 31.860053 0 1 11.489944,9.623917 10.633144,9.2046847 31.860053 0 1 -8.849845,9.623917 10.633144,9.2046847 31.860053 0 1 -11.489947,-9.623917 10.633144,9.2046847 31.860053 0 1 8.849848,-9.623917 z"
+       inkscape:export-filename="/home/franz/Dropbox/IT/GA/CS-Flex/lessons/course/project1/tic-tac-toe/img/favicon.png"
+       inkscape:export-xdpi="4.0640001"
+       inkscape:export-ydpi="4.0640001" />
+    <path
+       id="path5102"
+       style="opacity:1;fill:#53e3be;fill-opacity:1;stroke:none;stroke-width:10.2922;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 42.576214,35.921143 A 21.542406,17.946494 20.491602 0 0 24.120494,54.34613 21.542406,17.946494 20.491602 0 0 47.630686,72.771117 21.542406,17.946494 20.491602 0 0 66.086405,54.34613 21.542406,17.946494 20.491602 0 0 42.576214,35.921143 Z m 1.207186,8.80107 A 10.633144,9.2046847 31.860053 0 1 55.273344,54.34613 10.633144,9.2046847 31.860053 0 1 46.423499,63.970047 10.633144,9.2046847 31.860053 0 1 34.933552,54.34613 10.633144,9.2046847 31.860053 0 1 43.7834,44.722213 Z"
+       inkscape:export-filename="/home/franz/Dropbox/IT/GA/CS-Flex/lessons/course/project1/tic-tac-toe/img/favicon.png"
+       inkscape:export-xdpi="4.0640001"
+       inkscape:export-ydpi="4.0640001" />
+    <text
+       xml:space="preserve"
+       transform="matrix(1.4074115,0.17806839,0.06056921,1.4353479,-471.20295,-992.15627)"
+       id="text7849"
+       style="font-style:normal;font-weight:normal;font-size:48px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect7851);fill:#ef6f6c;fill-opacity:1;stroke:none"
+       inkscape:export-filename="/home/franz/Dropbox/IT/GA/CS-Flex/lessons/course/project1/tic-tac-toe/img/favicon.png"
+       inkscape:export-xdpi="4.0640001"
+       inkscape:export-ydpi="4.0640001"><tspan
+         x="361.40625"
+         y="739.16602"
+         id="tspan22943">x</tspan></text>
+  </g>
+</svg>
