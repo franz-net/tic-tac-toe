@@ -13,7 +13,7 @@
 - [Challenges and Lessons Learned](#challenges-and-lessons-learned)
 - [Roadmap](#roadmap)
 - [Contact](#contact)
-- [Attributions:](#attributions)
+- [Attributions](#attributions)
 
 ---
 
@@ -115,6 +115,6 @@ Some of the key features used:
 -   [GitHub](https://github.com/franz-net/)
 -   [LinkedIn](https://www.linkedin.com/in/franzramirez/)
 
-## Attributions:
+## Attributions
 
 -   Sound by: [LittleRobotSoundFactory](https://freesound.org/people/LittleRobotSoundFactory/)
