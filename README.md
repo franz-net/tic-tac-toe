@@ -66,12 +66,23 @@ Some of the key features used:
 
 ### Screenshots and Media:
 
--   Initial layout draft: <img src="img/match_draft.png" width="350px"/>
--   Welcome Screen: <img src="img/welcomeScreen.png" width="350px"/>
--   Main Gameplay: <img src="img/gameBoard.png" width="350px"/>
--   Winner Screen: <img src="img/winnerScreen.png" width="350px"/>
--   Draw Screen: <img src="img/drawScreen.png" width="350px"/>
--   HighScores Screen: <img src="img/highScores.png" width="350px"/>
+**Initial layout draft:**\
+ <img src="img/match_draft.png" width="350px"/>
+
+**Welcome Screen:**\
+ <img src="img/welcomeScreen.png" width="350px"/>
+
+**Main Gameplay:**\
+ <img src="img/gameBoard.png" width="350px"/>
+
+**Winner Screen:**\
+ <img src="img/winnerScreen.png" width="350px"/>
+
+**Draw Screen:**\
+ <img src="img/drawScreen.png" width="350px"/>
+
+**HighScores Screen:**\
+ <img src="img/highScores.png" width="350px"/>
 
 ## Challenges and Lessons Learned
 
