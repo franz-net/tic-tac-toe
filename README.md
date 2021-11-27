@@ -3,9 +3,8 @@
 </p>
 <h1 align="center"> <a href="https://www.franz-e.net/tic-tac-toe">Tic-tac-toe</a> </h1>
 
-## Table of contents
+#### Table of contents
 
-- [Table of contents](#table-of-contents)
 - [About the Project](#about-the-project)
   - [Features:](#features)
   - [Technologies Used](#technologies-used)
@@ -16,6 +15,8 @@
 - [Roadmap](#roadmap)
 - [Contact](#contact)
 - [Attributions:](#attributions)
+
+---
 
 ## About the Project
 
