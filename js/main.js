@@ -339,7 +339,7 @@ function saveHighScore() {
         highScores = JSON.parse(localStorage.getItem('highScores'))
     }
 
-    if (game.player_1.won === game.player_2.won) {
+    if (game.player_1.won === game.player_2.won && game.player_1.won !== 0) {
         for (let key in game) {
             if (key.includes('player')) {
                 let score = {}
@@ -355,7 +355,7 @@ function saveHighScore() {
         score['name'] = game.player_1.name
         score['score'] = game.player_1.won
         highScores.push(score)
-    } else {
+    } else if (game.player_2.won > game.player_1.won) {
         let score = {}
         score['date'] = getDate()
         score['name'] = game.player_2.name
