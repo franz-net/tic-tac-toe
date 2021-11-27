@@ -1,3 +1,6 @@
+<p align="center">
+<img src="./img/logo.png" width="150px"/>
+</p>
 <h1 align="center"> <a href="https://www.franz-e.net/tic-tac-toe">Tic-tac-toe</a> </h1>
 
 ## Table of contents
@@ -90,7 +93,6 @@ TODO
 
 ## Roadmap
 
--   Create a `favicon`
 -   Smarter Computer player:
     > The current Computer player's goal is is just to play a turn on the first available cell.
 -   Use Classes to instantiate a Game objects instead of a JS object to simulate an object
